@@ -1,3 +1,5 @@
+"use client";
+
 import EventCard from "@/components/EventCard"
 
 async function eventData(){
