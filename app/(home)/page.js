@@ -1,5 +1,5 @@
-"use client"
-
+"use client";
+import React, { Suspense } from "react";
 import EventCard from "@/components/EventCard";
 import SwiperComponent from "@/components/SwiperComponent";
 import React from "react";
@@ -16,7 +16,9 @@ function App() {
 
       <div className="flex items-center justify-around mt-8 mb-32">
         {dummyEvents.map((eventData) => (
-          <EventCard eventData={eventData} />
+          <Suspense key={eventData.id} fallback={<div className="flex items-center justify-center h-full w-full"><h1>Loading event...</h1></div>}>
+            <EventCard eventData={eventData} />
+          </Suspense>
         ))}
       </div>
     </div>
