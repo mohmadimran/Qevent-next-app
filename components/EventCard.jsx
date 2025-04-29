@@ -2,8 +2,9 @@
 import { useSearchParams } from "next/navigation";
 import Tag from "./Tag";
 import Link from "next/link";
+import { Suspense } from "react";
 
-const EventCard = ({ eventData }) => {
+const EventCardContent = ({ eventData }) => {
   const searchParams = useSearchParams();
   const artistName = searchParams.get("artist");
   const tagName = searchParams.get("tag");
@@ -12,10 +13,12 @@ const EventCard = ({ eventData }) => {
     return null;
   }
 
-  if (tagName && (!Array.isArray(eventData.tags) || !eventData.tags.includes(tagName))) {
+  if (
+    tagName &&
+    (!Array.isArray(eventData.tags) || !eventData.tags.includes(tagName))
+  ) {
     return null;
   }
-  
 
   return (
     <div className="hover-inverse w-[90%] group transform transition-transform duration-400 hover:scale-80 hover:bg-gradient-to-r hover:from-orange-200 hover:to-white text-dark m-4 border-slate-400 border rounded-md px-8 py-2.5 mx-auto">
@@ -54,6 +57,18 @@ const EventCard = ({ eventData }) => {
         </div>
       </Link>
     </div>
+  );
+};
+
+const EventCard = ({ eventData }) => {
+  return (
+    <Suspense
+      fallback={
+        <div className="w-[90%] h-[400px] bg-gray-100 animate-pulse rounded-md m-4"></div>
+      }
+    >
+      <EventCardContent eventData={eventData} />
+    </Suspense>
   );
 };
 
