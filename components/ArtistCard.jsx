@@ -6,7 +6,6 @@ const ArtistCard = ({ artistData }) => {
 
   const handleNavigation = (name) => {
     router.push(`/events?artist=${encodeURIComponent(name)}`);
-    // router.push(`/events?artist=${name}`)
   };
 
   return (

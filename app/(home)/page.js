@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import EventCard from "@/components/EventCard";
 import SwiperComponent from "@/components/SwiperComponent";
